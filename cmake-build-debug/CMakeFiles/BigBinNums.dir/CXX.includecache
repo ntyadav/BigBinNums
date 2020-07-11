@@ -6,20 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/nyada/CLionProjects/BigBinNums/TBigNum.cpp
-TBigNum.h
-C:/Users/nyada/CLionProjects/BigBinNums/TBigNum.h
-algorithm
--
-new
--
-vector
--
-stdexcept
--
-iostream
--
-
 C:/Users/nyada/CLionProjects/BigBinNums/TBigNum.h
 cstdlib
 -

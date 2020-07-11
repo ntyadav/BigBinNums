@@ -30,6 +30,7 @@ int main()
     auto lv = (TBigNum) "123456789101112131415161718192021222324252627282930";
     auto rv = (TBigNum) "-987654321123456789";
     string ans = "123456789101112131415161718192020234669931503826141"; // Calculated in Python
+    cout << lv.toDecimalString() << " + " << rv.toDecimalString() << endl << "  =" << endl;
     lv += rv;
     cout << ans << " // Calculated in Python" << endl;
     cout << lv.toDecimalString() << " // Calculated in TBigNum objects" << endl;
