@@ -127,6 +127,7 @@ bool TBigNum::setNum(int num)
         return false;
     for (int i = 0; i < int_size; i++)
         f_pnum[i] = cast.num_arr[int_size - i - 1];
+    minimize();
     return true;
 }
 
@@ -146,6 +147,7 @@ bool TBigNum::setNum(unsigned int num)
         f_pnum[i + isFirstBitOne] = cast.num_arr[uint_size - i - 1];
     if (isFirstBitOne)
         f_pnum[0] = 0;
+    minimize();
     return true;
 }
 
@@ -171,6 +173,7 @@ bool TBigNum::setNum(long long int num)
         return false;
     for (int i = 0; i < ll_size; i++)
         f_pnum[i] = cast.num_arr[ll_size - i - 1];
+    minimize();
     return true;
 }
 
@@ -190,6 +193,7 @@ bool TBigNum::setNum(unsigned long long int num)
         f_pnum[i + isFirstBitOne] = cast.num_arr[ull_size - i - 1];
     if (isFirstBitOne)
         f_pnum[0] = 0;
+    minimize();
     return true;
 }
 

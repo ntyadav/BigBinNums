@@ -17,13 +17,10 @@ int main()
     int val = 1000;
     x.setNum(val);
     cout << "TBigNum x = " << val << endl;
-    cout << "x dec array: ";
+    cout << "x     decimal data array: ";
     x.printDataArray(false);
-    cout << "x hex array: ";
+    cout << "x hexadecimal data array: ";
     x.printDataArray(true);
-    x.minimize();
-    cout << "x dec array after minimizing: ";
-    x.printDataArray(false);
     int n = 2;
     cout << endl;
     for (int i = 0; i < n; i++)

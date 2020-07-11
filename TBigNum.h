@@ -99,11 +99,6 @@ public:
     bool setNum(unsigned char num);
 
     /**
-     * Removes extra bytes from the beginning
-     */
-    void minimize();
-
-    /**
      * Prints f_pnum array with the number in hexadecimal or decimal notation
      * @param hex Indicates whether to print in hexadecimal or decimal
      */
@@ -145,6 +140,11 @@ private:
             return false;
         return (f_pnum[0] >= 128);
     }
+
+    /**
+     * Removes extra bytes from the beginning
+     */
+    void minimize();
 
     /**
      * Changes number array (f_pnum) size
