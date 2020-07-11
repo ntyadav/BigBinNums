@@ -24,6 +24,9 @@ TBigNum::TBigNum(const TBigNum& other) : f_pnum(nullptr), f_size(0)
         f_pnum[i] = other.f_pnum[i];
 }
 
+/**
+ * Converts str to a number using long division algorithm (conversion to 256-digit number system)
+ */
 TBigNum::TBigNum(std::string str) : f_pnum(nullptr), f_size(0)
 {
     bool isNumNegative = false;
@@ -32,9 +35,9 @@ TBigNum::TBigNum(std::string str) : f_pnum(nullptr), f_size(0)
         isNumNegative = true;
         str = str.substr(1);
     }
-    for (int i = 0; i < str.length(); i++)
+    for (auto symbol : str)
     {
-        int digit = str[i] - '0';
+        int digit = symbol - '0';
         if (digit < 0 || digit > 9)
             throw invalid_argument("Failed to convert string to number");
     }
@@ -45,10 +48,10 @@ TBigNum::TBigNum(std::string str) : f_pnum(nullptr), f_size(0)
         int carry = 0;
         int carry_num = 0;
         string quotient;
-        for (int i = 0; i < str.length(); i++)
+        for (auto digit : str)
         {
             carry *= base;
-            carry += str[i] - '0';
+            carry += digit - '0';
             carry_num++;
             if (carry >= div)
             {
@@ -72,6 +75,10 @@ TBigNum::TBigNum(std::string str) : f_pnum(nullptr), f_size(0)
         *this = -*this;
 }
 
+/**
+ * Converts the number to a string using long
+ * division algorithm (conversion from 256-digit number system to decimal)
+ */
 std::string TBigNum::toDecimalString() const
 {
     const int base = 256, div = 10;
@@ -85,10 +92,10 @@ std::string TBigNum::toDecimalString() const
         int carry = 0;
         int carry_num = 0;
         vector<unsigned char> quotient(0);
-        for (int i = 0; i < num.size(); i++)
+        for (auto digit : num)
         {
             carry *= base;
-            carry += num[i];
+            carry += digit;
             carry_num++;
             if (carry >= div)
             {
@@ -206,6 +213,30 @@ bool TBigNum::setNum(unsigned char num)
     return true;
 }
 
+void TBigNum::minimize()
+{
+    unsigned char extra_byte = isNegative() ? 255 : 0;
+    int k = 0;
+    while (k + 1 < f_size)
+    {
+        if (extra_byte == f_pnum[k] && (isNegative() ? f_pnum[k + 1] >= 128 : f_pnum[k + 1] < 128))
+            k++;
+        else
+            break;
+    }
+    if (k == 0)
+        return;
+    auto *new_arr = new(nothrow) unsigned char[f_size - k];
+    if (!new_arr)
+        return;
+    size_t new_size = f_size - k;
+    for (int i = 0; i < new_size; i++)
+        new_arr[i] = f_pnum[i + k];
+    delete[] f_pnum;
+    f_pnum = new_arr;
+    f_size = new_size;
+}
+
 
 bool TBigNum::resize(size_t new_size)
 {
@@ -273,7 +304,9 @@ TBigNum TBigNum::operator-() const
     return res;
 }
 
-
+/**
+ * The numbers are added in a 256-decimal number system (the algorithm of column addition is used)
+ */
 void TBigNum::operator+=(const TBigNum& rhs)
 {
     const int base = 256;
@@ -310,6 +343,7 @@ void TBigNum::operator+=(const TBigNum& rhs)
     }
     for (int i = 0; i < f_size; i++)
         f_pnum[i] = res_arr[f_size - i - 1];
+    minimize();
 }
 
 
