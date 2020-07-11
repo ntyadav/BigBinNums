@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/nyada/CLionProjects/BigBinNums/TBigNum.h
+cstdlib
+-
+string
+-
+
+C:/Users/nyada/CLionProjects/BigBinNums/main.cpp
+iostream
+-
+vector
+-
+ctime
+-
+TBigNum.h
+C:/Users/nyada/CLionProjects/BigBinNums/TBigNum.h
+

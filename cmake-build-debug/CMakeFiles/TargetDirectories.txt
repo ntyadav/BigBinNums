@@ -1,0 +1,3 @@
+C:/Users/nyada/CLionProjects/BigBinNums/cmake-build-debug/CMakeFiles/BigBinNums.dir
+C:/Users/nyada/CLionProjects/BigBinNums/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/nyada/CLionProjects/BigBinNums/cmake-build-debug/CMakeFiles/rebuild_cache.dir
