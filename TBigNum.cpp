@@ -237,6 +237,33 @@ void TBigNum::minimize()
     f_size = new_size;
 }
 
+void TBigNum::printDataArray(bool hex) const
+{
+    if (hex)
+    {
+        for (int i = 0; i < f_size; i++)
+        {
+            char digit1 = f_pnum[i] / 16;
+            char digit2 = f_pnum[i] % 16;
+            if (digit1 > 9)
+                digit1 = 'A' + digit1 - 10;
+            else
+                digit1 = '0' + digit1;
+            if (digit2 > 9)
+                digit2 = 'A' + digit2 - 10;
+            else
+                digit2 = '0' + digit2;
+            cout << (digit1 != '0' ? string(1, digit1) : "") << digit2 << " ";;
+        }
+    }
+    else
+    {
+        for (int i = 0; i < f_size; i++)
+            cout << std::to_string((int) f_pnum[i]) << " ";
+    }
+    cout << '\n';
+}
+
 
 bool TBigNum::resize(size_t new_size)
 {
@@ -306,6 +333,7 @@ TBigNum TBigNum::operator-() const
 
 /**
  * The numbers are added in a 256-decimal number system (the algorithm of column addition is used)
+ * Calls the minimize method at the end
  */
 void TBigNum::operator+=(const TBigNum& rhs)
 {

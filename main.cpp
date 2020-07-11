@@ -12,6 +12,18 @@ int main()
 {;
     mt19937_64 eng(time(nullptr));
     uniform_int_distribution<unsigned int> distr;
+    TBigNum x;
+    cout << endl;
+    int val = 1000;
+    x.setNum(val);
+    cout << "TBigNum x = " << val << endl;
+    cout << "x dec array: ";
+    x.printDataArray(false);
+    cout << "x hex array: ";
+    x.printDataArray(true);
+    x.minimize();
+    cout << "x dec array after minimizing: ";
+    x.printDataArray(false);
     int n = 2;
     cout << endl;
     for (int i = 0; i < n; i++)

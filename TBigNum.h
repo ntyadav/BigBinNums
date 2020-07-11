@@ -103,13 +103,11 @@ public:
      */
     void minimize();
 
-    std::string toString() const
-    {
-        std::string res;
-        for (int i = 0; i < f_size; i++)
-            res += std::to_string((int) f_pnum[i]) + " ";
-        return res;
-    }
+    /**
+     * Prints f_pnum array with the number in hexadecimal or decimal notation
+     * @param hex Indicates whether to print in hexadecimal or decimal
+     */
+    void printDataArray(bool hex) const;
 
     TBigNum& operator=(const TBigNum& rhs);
 
